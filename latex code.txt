@@ -1,0 +1,206 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage{times} % Times New Roman font 
+\usepackage[margin=1in]{geometry}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{graphicx} % for including images
+\graphicspath{ {./images/} }
+\begin{document}
+
+\title{CS2009 – Design and Analysis of Algorithms Project}
+\author{21K4523, 21K4899, 21K3455}
+
+\maketitle
+
+\section{ABSTRACT}
+This project delves into the implementation and analysis of geometric algorithms with varying Big O complexities. The objective is to showcase the implementation steps of geometric algorithms, detailing each step in a comprehensible manner. Furthermore, the project highlights the calculation of both Time and Space complexities for each algorithm.
+
+\section{INTRODUCTION}
+The project tackles two fundamental geometric problems:
+Line Segment Intersection: The implementation explores two methods discussed during lectures, supplemented by additional research for a novel idea. 
+Convex Hull Solution: This problem is addressed using multiple algorithms, each revealing distinct time and space complexities. The showcased algorithms include Brute Force, Jarvis March, Graham Scan, Quick Elimination, and an additional method sourced from relevant research papers. 
+
+\section{PROGRAMMING DESIGN}
+In order to create a user-friendly interface in which the points could be input quickly and easily, we decided to allow the user to click  on the provided window in order to create a point. Once all the points were created, the user is required to select an algorithm from the menu and click a button to begin generation of the convex hull.The functions to generate the set of points that would make up the convex hull are separate from those that take input (the points clicked on screen) and those that display the final hull.
+
+\section{EXPERIMENTAL SETUP}
+We used Python, PyCharm, Replit, and Tkinter to develop this project. Python, known for its readability and versatility, served as the primary programming language, allowing us to implement complex algorithms with ease. For collaborative coding we used Replit, a cloud-based environment where team members could simultaneously work on the project in real-time. The integration of Tkinter, a standard GUI toolkit for Python, facilitated the creation of interactive elements, such as buttons and canvas.
+
+\section{RESULTS AND DISCUSSION}
+Comparison of various solutions for each problem and decide which one is the most ideal.\\
+
+\begin{table}[htbp]
+  \centering
+  \caption{Time and Space Complexities - Convex Hull Solutions}
+  \small
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Algorithm} & \textbf{Time Complexity} & \textbf{Space Complexity} \\
+    \midrule
+    Brute Force & $O(n^3)$ & $O(n)$ \\
+    Jarvis March & $O(nh)$ & $O(n+h)$ \\
+    Graham Scan & $O(n \log n)$ & $O(n+h)$ \\
+    Quick Elimination & $O(n^2)$ & $O(n)$ \\
+    Monotone Chain Algorithm & $O(n \log h)$ & $O(n)$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+• Brute Force uses an array of size h to store the hull, so its space complexity is O(h). It uses three nested loops, so the overall time complexity is $O(n^3)$.
+
+• Jarvis March uses O(n) to store points in a 2-D array, and an array of size h to store the hull, so total space is O(n+h). It visits each point on the hull once which takes O(h) and it may loop over n points to find the next
+which takes O(n), so overall time complexity is O(nh).
+
+• Graham Scan has a stack to push and pop points. The size of the stack is n+h in the worst case, so its space complexity is O(n+h). Time complexity is
+$O(n\log n)$ as the dominant term is the sorting step.
+
+• Quick Elimination may use a recursive call stack of depth O(n) in the worst case, hence it has O(n) space complexity. Quick Elimination doesn’t efficiently eliminate points during the recursive steps in its worse case, so the divide-and-conquer approach can degrade to $O(n^2)$ time.
+
+• Monotone Chain algorithm uses O(n) space in the preprocessing step to divide the set of points into subsets, and it uses O(h) space in the merge step to recursively merge the convex hulls of the subsets, therefore taking O(n+h) space in total. The overall time complexity is dominated by the sorting step, resulting in a total time complexity of $O(n \log n)$
+
+• For the line segment algorithms both time and space complexity is O(1) since they do not use any loops, recursion, or significant auxiliary data structures
+
+\begin{table}[htbp]
+  \centering
+  \caption{Time and Space Complexities - Line Segment Intersection Solutions}
+  \small
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Algorithm} & \textbf{Time Complexity} & \textbf{Space Complexity} \\
+    \midrule
+    Orientation Method & $O(1)$ & $O(1)$ \\
+    Algebraic Method & $O(1)$ & $O(1)$ \\
+    Franklin Antonio Method & $O(f(n))$ & $O(g(n))$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Execution Times - Convex Hull Solutions }
+  \small
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Algorithm} & \textbf{Execution Time (s)} \\
+    \midrule
+    Brute Force & 10.25 \\
+    Jarvis March & 5.12 \\
+    Graham Scan & 2.75 \\
+    Quickhull & 3.98 \\
+    Monotone Chain Algorithm & 4.60 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Execution Times - Line Segment Intersection Solutions}
+  \small
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Algorithm} & \textbf{Execution Time (s)} \\
+    \midrule
+    Brute Force & 10.25 \\
+    Jarvis March & 5.12 \\
+    Graham Scan & 2.75 \\
+    Quickhull & 3.98 \\
+    Monotone Chain Algorithm & 4.60 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\newpage
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{images/bruteforce.png} 
+  \caption{Brute Force}
+  \label{fig:example}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{images/grahamscan.png} 
+  \caption{Graham Scan}
+  \label{fig:example}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{images/jarvismarch.png} 
+  \caption{Jarvis March}
+  \label{fig:example}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{images/quickhull.png} 
+  \caption{Quick Elimination}
+  \label{fig:example}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{images/monotonechain.png} 
+  \caption{Monotone Chain}
+  \label{fig:example}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{images/CCW-1.png} 
+  \caption{Counterclockwise Method}
+  \label{fig:example}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{images/CCW-2.png} 
+  \caption{Counterclockwise Method}
+  \label{fig:example}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{images/P-1.png} 
+  \caption{Algebra}
+  \label{fig:example}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{images/P-2.png} 
+  \caption{Algebra}
+  \label{fig:example}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{images/FA-1.png} 
+  \caption{Franklin Antonio}
+  \label{fig:example}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{images/FA-2.png} 
+  \caption{Franklin Antonio}
+  \label{fig:example}
+\end{figure}
+
+\columnbreak  
+\clearpage   
+
+\section{CONCLUSION}
+In conclusion, this project successfully explored geometric algorithms for line segment intersection and convex hull solutions. Overall, this project contributes to the understanding of geometric algorithms, emphasizing clarity and computational efficiency.
+
+\section{REFERENCES}
+\url {https://www.cs.umd.edu/~patras/patra2012_convexhull_report.pdf}
+\url {https://intellipaat.com/blog/tutorial/pycharm-tutorial/}
+\url {https://en.wikipedia.org/wiki/Convex_hull_algorithms}
+\url {https://experts.illinois.edu/en/publications/}
+\url{https://www.researchgate.net/publication/220110444_Another_Efficient_Algorithm_for_Convex_Hulls_in_Two_Dimensions}
+\url{https://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain#Python}
+\url{https://www.sciencedirect.com/science/article/abs/pii/B9780080507552500452}
+\end{document}
